@@ -23,4 +23,5 @@ with st.form('my_form'):
     text = st.text_area('输入主题关键词:', '小白兔')
     submitted = st.form_submit_button('提交')
     if submitted:
-        st.info(chain.invoke({"topic": text}))
+        response = chain.invoke({"topic": text})
+        st.info(response.content)
