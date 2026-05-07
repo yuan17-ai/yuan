@@ -5,11 +5,17 @@ from langchain_core.prompts import ChatPromptTemplate
 
 st.title('🦜🔗 中文小故事生成器')
 
+def get_secret_key(key, default=""):
+    try:
+        return st.secrets.get(key, default)
+    except Exception:
+        return default
+
 with st.sidebar:
     st.subheader('API 配置')
     api_key = st.text_input(
         'Deepseek API Key',
-        value=st.secrets.get("Deepseek_API_KEY", ""),
+        value=get_secret_key("Deepseek_API_KEY", ""),
         type='password',
         help='请输入您的 Deepseek API Key'
     )
